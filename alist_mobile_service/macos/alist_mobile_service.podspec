@@ -25,7 +25,7 @@ For OpenIoTHub mobile APP background service
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 
-  s.dependency 'OpenIoTHubMobile' , '0.0.15'
+  s.dependency 'AListMobile' , '0.0.1'
   s.static_framework = true
 
 #     s.preserve_paths = 'OpenIoTHubMobile.xcframework/**/*'

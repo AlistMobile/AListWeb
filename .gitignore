@@ -43,3 +43,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/alist_mobile_service/android/libs/mobile.aar

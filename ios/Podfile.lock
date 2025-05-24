@@ -1,0 +1,154 @@
+PODS:
+  - Ads-CN-Beta/BUAdSDK (6.9.0.3)
+  - Ads-CN-Beta/CSJMediation (6.9.0.3):
+    - Ads-CN-Beta/BUAdSDK
+  - alist_mobile_service (0.0.1):
+    - AListMobile (= 0.0.1)
+    - Flutter
+  - AListMobile (0.0.1)
+  - DKImagePickerController/Core (4.3.9):
+    - DKImagePickerController/ImageDataManager
+    - DKImagePickerController/Resource
+  - DKImagePickerController/ImageDataManager (4.3.9)
+  - DKImagePickerController/PhotoGallery (4.3.9):
+    - DKImagePickerController/Core
+    - DKPhotoGallery
+  - DKImagePickerController/Resource (4.3.9)
+  - DKPhotoGallery (0.0.19):
+    - DKPhotoGallery/Core (= 0.0.19)
+    - DKPhotoGallery/Model (= 0.0.19)
+    - DKPhotoGallery/Preview (= 0.0.19)
+    - DKPhotoGallery/Resource (= 0.0.19)
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Core (0.0.19):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Preview
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Model (0.0.19):
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Preview (0.0.19):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Resource
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Resource (0.0.19):
+    - SDWebImage
+    - SwiftyGif
+  - file_picker (0.0.1):
+    - DKImagePickerController/PhotoGallery
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_inappwebview_ios (0.0.1):
+    - Flutter
+    - flutter_inappwebview_ios/Core (= 0.0.1)
+    - OrderedSet (~> 6.0.3)
+  - flutter_inappwebview_ios/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 6.0.3)
+  - flutter_tencentad (0.0.1):
+    - Flutter
+    - GDTMobSDK (= 4.15.30)
+  - flutter_unionad (0.0.1):
+    - Ads-CN-Beta/BUAdSDK (= 6.9.0.3)
+    - Ads-CN-Beta/CSJMediation (= 6.9.0.3)
+    - Flutter
+  - GDTMobSDK (4.15.30)
+  - gtads (0.0.1):
+    - Flutter
+  - gtads_csj (0.0.1):
+    - Flutter
+  - gtads_ylh (0.0.1):
+    - Flutter
+  - OrderedSet (6.0.3)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - SDWebImage (5.21.0):
+    - SDWebImage/Core (= 5.21.0)
+  - SDWebImage/Core (5.21.0)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - SwiftyGif (5.4.5)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - alist_mobile_service (from `.symlinks/plugins/alist_mobile_service/ios`)
+  - file_picker (from `.symlinks/plugins/file_picker/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
+  - flutter_tencentad (from `.symlinks/plugins/flutter_tencentad/ios`)
+  - flutter_unionad (from `.symlinks/plugins/flutter_unionad/ios`)
+  - gtads (from `.symlinks/plugins/gtads/ios`)
+  - gtads_csj (from `.symlinks/plugins/gtads_csj/ios`)
+  - gtads_ylh (from `.symlinks/plugins/gtads_ylh/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Ads-CN-Beta
+    - AListMobile
+    - DKImagePickerController
+    - DKPhotoGallery
+    - GDTMobSDK
+    - OrderedSet
+    - SDWebImage
+    - SwiftyGif
+
+EXTERNAL SOURCES:
+  alist_mobile_service:
+    :path: ".symlinks/plugins/alist_mobile_service/ios"
+  file_picker:
+    :path: ".symlinks/plugins/file_picker/ios"
+  Flutter:
+    :path: Flutter
+  flutter_inappwebview_ios:
+    :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
+  flutter_tencentad:
+    :path: ".symlinks/plugins/flutter_tencentad/ios"
+  flutter_unionad:
+    :path: ".symlinks/plugins/flutter_unionad/ios"
+  gtads:
+    :path: ".symlinks/plugins/gtads/ios"
+  gtads_csj:
+    :path: ".symlinks/plugins/gtads_csj/ios"
+  gtads_ylh:
+    :path: ".symlinks/plugins/gtads_ylh/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+SPEC CHECKSUMS:
+  Ads-CN-Beta: 5428fcbb80e6e84d38c36034a73663bd71c109d0
+  alist_mobile_service: c4d2b36ac455b4f825d92e411871b34f3bca7bc7
+  AListMobile: 4aaf4cb4739a87e900563223a37e0d136bd10767
+  DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
+  DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
+  file_picker: a0560bc09d61de87f12d246fc47d2119e6ef37be
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
+  flutter_tencentad: 098003a7ade9bf73121d2f9ee8eb9f8135e50f8e
+  flutter_unionad: 8579c3eb3817e4ae76d6e3f0b6532157654953d9
+  GDTMobSDK: ee16d8b3c06825c09c0be89a443c1a909fdb86b3
+  gtads: ed52471fbecd938988d9bbdf5950fef160c0b871
+  gtads_csj: 9cc2d6dc667537c24a8ee367a00a63218fa81783
+  gtads_ylh: eff6718d72b252bee859c2357d91bc6aae2e08ab
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
+  SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
+  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
+
+PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
+
+COCOAPODS: 1.16.2

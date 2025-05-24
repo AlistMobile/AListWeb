@@ -1,0 +1,52 @@
+PODS:
+  - alist_mobile_service (0.0.1):
+    - FlutterMacOS
+    - OpenIoTHubMobile (= 0.0.15)
+  - flutter_inappwebview_macos (0.0.1):
+    - FlutterMacOS
+    - OrderedSet (~> 6.0.3)
+  - FlutterMacOS (1.0.0)
+  - OpenIoTHubMobile (0.0.15)
+  - OrderedSet (6.0.3)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - url_launcher_macos (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - alist_mobile_service (from `Flutter/ephemeral/.symlinks/plugins/alist_mobile_service/macos`)
+  - flutter_inappwebview_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_inappwebview_macos/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+
+SPEC REPOS:
+  trunk:
+    - OpenIoTHubMobile
+    - OrderedSet
+
+EXTERNAL SOURCES:
+  alist_mobile_service:
+    :path: Flutter/ephemeral/.symlinks/plugins/alist_mobile_service/macos
+  flutter_inappwebview_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_inappwebview_macos/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  shared_preferences_foundation:
+    :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
+  url_launcher_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+
+SPEC CHECKSUMS:
+  alist_mobile_service: 9140c7f8cbaa5b9bfc19459bd5a28adbcc5df6b0
+  flutter_inappwebview_macos: c2d68649f9f8f1831bfcd98d73fd6256366d9d1d
+  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  OpenIoTHubMobile: 6f2b74268303dbba574fafcdad2c2037ae58e546
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
+  url_launcher_macos: 0fba8ddabfc33ce0a9afe7c5fef5aab3d8d2d673
+
+PODFILE CHECKSUM: 7eb978b976557c8c1cd717d8185ec483fd090a82
+
+COCOAPODS: 1.16.2

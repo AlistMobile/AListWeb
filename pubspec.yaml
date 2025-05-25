@@ -49,6 +49,8 @@ dependencies:
   url_launcher: ^6.1.11
   path_provider: ^2.1.5
   file_picker: ^10.1.9
+  dio: ^5.8.0+1
+  tdesign_flutter: ^0.2.0
 
 dev_dependencies:
   flutter_test:

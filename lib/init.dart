@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:alist_web/toast.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gtads/gtads.dart';
 import 'package:gtads_csj/gtads_csj.dart';
@@ -16,13 +18,65 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'config.dart';
 
 List<Map<String, bool>>? initList;
+final APIBaseUrl = "http://localhost:15244";
 
 Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
   print("appDir.path:${appDir.path}");
-  initBackgroundService();
+  initBackgroundService().then((_) async {
+    await Future.delayed(Duration(milliseconds: 50));
+    await setConfigData(appDir.path);
+    await initAList();
+    await startAList();
+  });
   await initAD();
   initHttpAssets();
+}
+
+Future<void> setConfigData(String path) async {
+  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  String reqUri = "/set-config-data";
+  final response = await dio.getUri(Uri(path: reqUri, queryParameters: {
+    "path": path
+  }));
+  if (response.statusCode == 200) {
+    print("setConfigData:${path},ok");
+  } else {
+    print("setConfigData:${path},failed");
+  }
+}
+
+Future<void> initAList() async {
+  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  String reqUri = "/init";
+  final response = await dio.getUri(Uri.parse(reqUri));
+  if (response.statusCode == 200) {
+    print("initAList,ok");
+  } else {
+    print("initAList,failed");
+  }
+}
+
+Future<void> startAList() async {
+  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  String reqUri = "/start";
+  final response = await dio.getUri(Uri.parse(reqUri));
+  if (response.statusCode == 200) {
+    print("startAList,ok");
+  } else {
+    print("startAList,failed");
+  }
+}
+
+Future<void> setAdminPassword(String password) async {
+  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  String reqUri = "/set-admin-password";
+  final response = await dio.getUri(Uri.parse(reqUri));
+  if (response.statusCode == 200) {
+    print("setAdminPassword:${password},ok");
+  } else {
+    print("setAdminPassword:${password},failed");
+  }
 }
 
 void run(dynamic) async {

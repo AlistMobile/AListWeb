@@ -62,8 +62,13 @@ class WebScreenState extends State<WebScreen> {
           _webViewController?.goBack();
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Text("AListWeb"),
+            actions: [IconButton(onPressed: (){}, icon: Icon(Icons.add))],
+          ),
           body: Column(children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).padding.top),
+            // SizedBox(height: MediaQuery.of(context).padding.top),
             LinearProgressIndicator(
               value: _progress,
               backgroundColor: Colors.grey[200],
@@ -107,6 +112,10 @@ class WebScreenState extends State<WebScreen> {
                 },
                 onReceivedError: (controller, request, error) async {
                 // TODO
+                  _webViewController?.reload();
+                  setState(() {
+
+                  });
                 },
                 onDownloadStartRequest: (controller, url) async {
                   Get.showSnackbar(GetSnackBar(

@@ -1,13 +1,15 @@
 import 'dart:developer';
 
+import 'package:alist_web/widgets/appInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../generated/l10n.dart';
+import 'l10n/generated/alistweb_localizations.dart';
 
 GlobalKey<WebScreenState> webGlobalKey = GlobalKey();
 
@@ -65,7 +67,12 @@ class WebScreenState extends State<WebScreen> {
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: Text("AListWeb"),
-            actions: [IconButton(onPressed: (){}, icon: Icon(Icons.add))],
+            actions: [
+              IconButton(onPressed: (){_changeDataPath();}, icon: Icon(Icons.file_copy_outlined)),
+              IconButton(onPressed: (){_changePassword();}, icon: Icon(Icons.password)),
+              IconButton(onPressed: (){_webViewController?.reload();}, icon: Icon(Icons.refresh)),
+              IconButton(onPressed: (){_showAppInfo();}, icon: Icon(Icons.info))
+            ],
           ),
           body: Column(children: <Widget>[
             // SizedBox(height: MediaQuery.of(context).padding.top),
@@ -119,7 +126,7 @@ class WebScreenState extends State<WebScreen> {
                 },
                 onDownloadStartRequest: (controller, url) async {
                   Get.showSnackbar(GetSnackBar(
-                    title: S.of(context).downloadThisFile,
+                    title: AListWebLocalizations.of(context).downloadThisFile,
                     message: url.suggestedFilename ??
                         url.contentDisposition ??
                         url.toString(),
@@ -129,7 +136,7 @@ class WebScreenState extends State<WebScreen> {
                         onPressed: () {
                           launchUrlString(url.url.toString());
                         },
-                        child: Text(S.of(context).download),
+                        child: Text(AListWebLocalizations.of(context).download),
                       ),
                     ]),
                     onTap: (_) {
@@ -137,7 +144,7 @@ class WebScreenState extends State<WebScreen> {
                           ClipboardData(text: url.url.toString()));
                       Get.closeCurrentSnackbar();
                       Get.showSnackbar(GetSnackBar(
-                        message: S.of(context).copiedToClipboard,
+                        message: AListWebLocalizations.of(context).copiedToClipboard,
                         duration: const Duration(seconds: 1),
                       ));
                     },
@@ -167,5 +174,19 @@ class WebScreenState extends State<WebScreen> {
             ),
           ]),
         ));
+  }
+
+  _changeDataPath(){
+
+  }
+
+  _changePassword(){
+
+  }
+
+  _showAppInfo(){
+    Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+      return AppInfoPage(key: UniqueKey());
+    }));
   }
 }

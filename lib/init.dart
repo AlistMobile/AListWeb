@@ -5,9 +5,9 @@ import 'dart:isolate';
 import 'package:alist_web/toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:gtads/gtads.dart';
-import 'package:gtads_csj/gtads_csj.dart';
-import 'package:gtads_ylh/gtads_ylh.dart';
+// import 'package:gtads/gtads.dart';
+// import 'package:gtads_csj/gtads_csj.dart';
+// import 'package:gtads_ylh/gtads_ylh.dart';
 import 'package:jaguar/jaguar.dart';
 import 'package:jaguar_flutter_asset/jaguar_flutter_asset.dart';
 import 'package:alist_mobile_service/alist_mobile_service.dart'
@@ -19,6 +19,7 @@ import 'config.dart';
 
 List<Map<String, bool>>? initList;
 final APIBaseUrl = "http://localhost:15244";
+final PasswordHasBeenSet = "PasswordHasBeenSet";
 
 Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
@@ -28,8 +29,12 @@ Future<void> init() async {
     await setConfigData(appDir.path);
     await initAList();
     await startAList();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey(PasswordHasBeenSet)) {
+      setAdminPassword("admin");
+    }
   });
-  await initAD();
+  // await initAD();
   initHttpAssets();
 }
 
@@ -71,9 +76,14 @@ Future<void> startAList() async {
 Future<void> setAdminPassword(String password) async {
   final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
   String reqUri = "/set-admin-password";
-  final response = await dio.getUri(Uri.parse(reqUri));
+  final response = await dio.getUri(Uri(path: reqUri, queryParameters: {
+    "password": password
+  }));
   if (response.statusCode == 200) {
     print("setAdminPassword:${password},ok");
+    print(response.data);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(PasswordHasBeenSet, true);
   } else {
     print("setAdminPassword:${password},failed");
   }
@@ -98,15 +108,15 @@ Future<void> initHttpAssets() async {
   });
 }
 
-Future initAD() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  if(Platform.isAndroid && (!prefs.containsKey(Agreed_Privacy_Policy) || !(prefs.getBool(Agreed_Privacy_Policy)!))){
-    return;
-  }
-  //添加Provider列表
-  GTAds.addProviders([
-    GTAdsCsjProvider("csj", "5695020", "5695009", appName: "AListWeb"),
-    GTAdsYlhProvider("ylh", "1210892167", "1210892181")
-  ]);
-  initList = await GTAds.init(isDebug: true);
-}
+// Future initAD() async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   if(Platform.isAndroid && (!prefs.containsKey(Agreed_Privacy_Policy) || !(prefs.getBool(Agreed_Privacy_Policy)!))){
+//     return;
+//   }
+//   //添加Provider列表
+//   GTAds.addProviders([
+//     GTAdsCsjProvider("csj", "5695020", "5695009", appName: "AListWeb"),
+//     GTAdsYlhProvider("ylh", "1210892167", "1210892181")
+//   ]);
+//   initList = await GTAds.init(isDebug: true);
+// }

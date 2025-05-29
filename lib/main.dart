@@ -2,13 +2,20 @@ import 'package:alist_web/init.dart';
 import 'package:alist_web/web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 import 'l10n/generated/alistweb_localizations.dart';
+import 'model/custom_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   init();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CustomTheme()),
+      ],
+      child: const MyApp()
+  ),);
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +26,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AListWeb',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      // themeMode: ThemeMode.system,
+      theme: CustomThemes.light,
+      darkTheme: CustomThemes.dark,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

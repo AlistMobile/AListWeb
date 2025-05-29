@@ -59,27 +59,27 @@ class _AppInfoPageState extends State<AppInfoPage> {
       },
     );
     List<ListTile> tilesList = tiles.toList();
-    tilesList.add(ListTile(
-      title: Text(
-        AListWebLocalizations.of(context).feedback_channels,
-        style: TextStyle(color: Colors.green),
-      ),
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-//              return Text("${pair.iP}:${pair.port}");
-          return FeedbackPage(
-            key: UniqueKey(),
-          );
-        }));
-      },
-    ));
+//     tilesList.add(ListTile(
+//       title: Text(
+//         AListWebLocalizations.of(context).feedback_channels,
+//         style: TextStyle(color: Colors.green),
+//       ),
+//       onTap: () {
+//         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+// //              return Text("${pair.iP}:${pair.port}");
+//           return FeedbackPage(
+//             key: UniqueKey(),
+//           );
+//         }));
+//       },
+//     ));
     tilesList.add(ListTile(
       title: Text(
           AListWebLocalizations.of(context).online_feedback,
         style: TextStyle(color: Colors.green),
       ),
       onTap: () {
-        launchURL("https://support.qq.com/product/657356");
+        launchURL("https://github.com/AlistMobile/AListWeb");
       },
     ));
     tilesList.add(ListTile(
@@ -88,7 +88,7 @@ class _AppInfoPageState extends State<AppInfoPage> {
         style: TextStyle(color: Colors.green),
       ),
       onTap: () {
-        goToURL(context, "https://docs.iothub.cloud/privacyPolicy/index.html",
+        goToURL(context, "https://github.com/AlistMobile/AListWeb",
             AListWebLocalizations.of(context).privacy_policy);
       },
     ));

@@ -9,6 +9,7 @@ import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'init.dart';
 import 'l10n/generated/alistweb_localizations.dart';
 
 GlobalKey<WebScreenState> webGlobalKey = GlobalKey();
@@ -65,10 +66,10 @@ class WebScreenState extends State<WebScreen> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: Text("AListWeb"),
             actions: [
-              IconButton(onPressed: (){_changeDataPath();}, icon: Icon(Icons.file_copy_outlined)),
+              // IconButton(onPressed: (){_changeDataPath();}, icon: Icon(Icons.file_copy_outlined)),
               IconButton(onPressed: (){_changePassword();}, icon: Icon(Icons.password)),
               IconButton(onPressed: (){_webViewController?.reload();}, icon: Icon(Icons.refresh)),
               IconButton(onPressed: (){_showAppInfo();}, icon: Icon(Icons.info))
@@ -119,10 +120,14 @@ class WebScreenState extends State<WebScreen> {
                 },
                 onReceivedError: (controller, request, error) async {
                 // TODO
-                  _webViewController?.reload();
-                  setState(() {
+                  print(request.url);
+                  print(request.url.path);
+                  if (request.url.toString() == "http://localhost:5244/") {
+                    _webViewController?.reload();
+                    setState(() {
 
-                  });
+                    });
+                  }
                 },
                 onDownloadStartRequest: (controller, url) async {
                   Get.showSnackbar(GetSnackBar(
@@ -181,7 +186,44 @@ class WebScreenState extends State<WebScreen> {
   }
 
   _changePassword(){
-
+    TextEditingController passwordController =
+    TextEditingController.fromValue(TextEditingValue(text: ""));
+    showDialog(context: context, builder: (_){
+      return AlertDialog(
+          title: Text(AListWebLocalizations.of(context).modify_password),
+          content: SizedBox(
+              width: 250,
+              height: 200,
+              child: ListView(
+                children: <Widget>[
+                  TextFormField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(10.0),
+                      labelText: AListWebLocalizations.of(context).password,
+                      helperText:
+                      AListWebLocalizations.of(context).password,
+                    ),
+                  ),
+                ],
+              )),
+          actions: <Widget>[
+            TextButton(
+              child: Text(AListWebLocalizations.of(context).cancel),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text(AListWebLocalizations.of(context).modify),
+              onPressed: () async {
+                // TODO
+                setAdminPassword(passwordController.text);
+                Navigator.of(context).pop();
+              },
+            )
+          ]);
+    });
   }
 
   _showAppInfo(){

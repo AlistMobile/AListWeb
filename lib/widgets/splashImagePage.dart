@@ -14,7 +14,7 @@ class SplashImagePage extends StatefulWidget {
 class SplashImageState extends State<SplashImagePage> {
   // final String launchImage = "assets/images/splash/1.jpg";
   final String launchImage = "assets/images/splash/2.png";
-  int _countdown = 1;
+  int _countdown = 2;
   late Timer _countdownTimer;
 
   @override

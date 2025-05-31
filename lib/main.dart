@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alist_web/init.dart';
 import 'package:alist_web/web.dart';
 import 'package:alist_web/widgets/splashImagePage.dart';
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
         return;
       },
       // home: const WebScreen(),
-      home: SplashImagePage(),
+      home: Platform.isMacOS?SplashImagePage():WebScreen(),
     );
   }
 }

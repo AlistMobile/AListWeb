@@ -25,7 +25,7 @@ Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
   print("appDir.path:${appDir.path}");
   initBackgroundService().then((_) async {
-    await Future.delayed(Duration(milliseconds: 50));
+    await Future.delayed(Duration(milliseconds: 5));
     await setConfigData(appDir.path);
     await initAList();
     await startAList();
@@ -35,7 +35,7 @@ Future<void> init() async {
     }
   });
   // await initAD();
-  initHttpAssets();
+  // initHttpAssets();
 }
 
 Future<void> setConfigData(String path) async {
@@ -103,6 +103,7 @@ Future<void> initHttpAssets() async {
   final server =
       Jaguar(address: "0.0.0.0", port: 8889);
   server.addRoute(serveFlutterAssets());
+  // server.staticFiles('/*', 'assets/web'); // The magic!
   server.serve(logRequests: true).then((v) {
     server.log.onRecord.listen((r) => debugPrint("==serve-log：$r"));
   });

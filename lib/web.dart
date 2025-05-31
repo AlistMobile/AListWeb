@@ -36,6 +36,8 @@ class WebScreenState extends State<WebScreen> {
 
   double _progress = 0;
   String _url = "http://localhost:5244";
+  // String _url = "http://localhost:8889";
+  // String _url = "http://localhost:15244";
   // String _url = "https://baidu.com";
   bool _canGoBack = false;
 
@@ -47,6 +49,7 @@ class WebScreenState extends State<WebScreen> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration(seconds: 1),(){_webViewController?.reload();});
   }
 
   @override

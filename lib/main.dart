@@ -1,5 +1,6 @@
 import 'package:alist_web/init.dart';
 import 'package:alist_web/web.dart';
+import 'package:alist_web/widgets/splashImagePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         print("locales:$locales");
         return;
       },
-      home: const WebScreen(),
+      // home: const WebScreen(),
+      home: SplashImagePage(),
     );
   }
 }

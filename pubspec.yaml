@@ -78,11 +78,12 @@ flutter:
     - assets/native/icon/
     - assets/native/images/
     - assets/native/images/splash/
-    - assets/assets/
-    - assets/images/
-    - assets/static/
-    - assets/static/epub.js/
-    - assets/streamer/
+    - assets/web/
+    - assets/web/assets/
+    - assets/web/images/
+    - assets/web/static/
+    - assets/web/static/epub.js/
+    - assets/web/streamer/
 
 msix_config:
   display_name: openiothub

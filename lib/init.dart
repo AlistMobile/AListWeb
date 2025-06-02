@@ -5,11 +5,12 @@ import 'dart:isolate';
 import 'package:alist_web/utils/toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:gtads/gtads.dart';
 // import 'package:gtads_csj/gtads_csj.dart';
 // import 'package:gtads_ylh/gtads_ylh.dart';
-import 'package:jaguar/jaguar.dart';
-import 'package:jaguar_flutter_asset/jaguar_flutter_asset.dart';
+import 'package:jaguar/jaguar.dart' as jaguar;
+import 'package:jaguar_flutter_asset/jaguar_flutter_asset.dart' as jaguar_flutter_asset;
 import 'package:alist_mobile_service/alist_mobile_service.dart'
 as alist_mobile_service;
 import 'package:path_provider/path_provider.dart';
@@ -101,12 +102,75 @@ Future<void> initBackgroundService() async {
 
 Future<void> initHttpAssets() async {
   final server =
-      Jaguar(address: "0.0.0.0", port: 8889);
-  server.addRoute(serveFlutterAssets());
-  // server.staticFiles('/*', 'assets/web'); // The magic!
+    jaguar.Jaguar(address: "0.0.0.0", port: 8889);
+  // server.staticFile('/@manage', 'web/index.html');
+  // server.staticFiles('/@*', 'assets/index.html');
+  // server.addRoute(serveFlutterAssets(path:"/"));
+  server.addRoute(myServeFlutterAssets("@manage"));
+  server.addRoute(myServeFlutterAssets("@manage/settings/site"));
+  server.addRoute(myServeFlutterAssets("@manage/tasks/offline_download"));
+  server.addRoute(myServeFlutterAssets("@manage/storages"));
+  server.addRoute(jaguar_flutter_asset.serveFlutterAssets(prefix: "web/"));
   server.serve(logRequests: true).then((v) {
     server.log.onRecord.listen((r) => debugPrint("==serve-log：$r"));
   });
+}
+
+jaguar.Route serveFlutterAssets(
+    {String path = '*',
+      bool stripPrefix = true,
+      String prefix = '',
+      Map<String, String>? pathRegEx,
+      jaguar.ResponseProcessor? responseProcessor}) {
+  jaguar.Route route;
+  int skipCount = -1;
+  route = jaguar.Route.get(path, (ctx) async {
+    Iterable<String> segs = ctx.pathSegments;
+    if (skipCount > 0) segs = segs.skip(skipCount);
+
+    String lookupPath =
+        segs.join('/') + (ctx.path.endsWith('/') ? 'index.html' : '');
+    ctx.log.info("check contains");
+    if (lookupPath.contains("@")){
+      ctx.log.info("contains");
+      lookupPath = '/index.html';
+    }
+    final body = (await rootBundle.load('assets/$prefix$lookupPath'))
+        .buffer
+        .asUint8List();
+
+    String? mimeType;
+    if (!ctx.path.endsWith('/')) {
+      if (ctx.pathSegments.isNotEmpty) {
+        final String last = ctx.pathSegments.last;
+        if (last.contains('.')) {
+          mimeType = jaguar.MimeTypes.fromFileExtension[last.split('.').last];
+        }
+      }
+    } else {
+      mimeType = 'text/html';
+    }
+
+    ctx.response = jaguar.ByteResponse(body: body, mimeType: mimeType);
+  }, pathRegEx: pathRegEx, responseProcessor: responseProcessor);
+
+  if (stripPrefix) skipCount = route.pathSegments.length - 1;
+
+  return route;
+}
+
+jaguar.Route myServeFlutterAssets(String path) {
+  jaguar.Route route;
+  route = jaguar.Route.get(path, (ctx) async {
+    final body = (await rootBundle.load('assets/web/index.html'))
+        .buffer
+        .asUint8List();
+
+    String? mimeType = 'text/html';
+
+    ctx.response = jaguar.ByteResponse(body: body, mimeType: mimeType);
+  }, pathRegEx: null, responseProcessor: null);
+  return route;
 }
 
 // Future initAD() async {

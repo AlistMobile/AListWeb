@@ -75,8 +75,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/native/icon/
+    - assets/native/images/
+    - assets/native/images/splash/
+    - assets/assets/
     - assets/images/
-    - assets/images/splash/
+    - assets/static/
+    - assets/static/epub.js/
+    - assets/streamer/
 
 msix_config:
   display_name: openiothub
@@ -84,9 +90,9 @@ msix_config:
   publisher_display_name: OpenIoTHub Cloud
   identity_name: 38916OpenIoTHubCloud.openiothub
   #  msix_version: 1.0.0.0
-  logo_path: ./assets/icon/icon.png
-  start_menu_icon_path: ./assets/icon/icon.png
-  tile_icon_path: ./assets/icon/icon.png
+  logo_path: ./assets/native/icon/icon.png
+  start_menu_icon_path: ./assets/native/icon/icon.png
+  tile_icon_path: ./assets/native/icon/icon.png
   icons_background_color: transparent
   capabilities: internetClientServer, privateNetworkClientServer, removableStorage, location
 
@@ -94,14 +100,14 @@ flutter_launcher_icons:
   android: true
   adaptive_icon_foreground_inset: 21
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/icon/icon.png"
+  adaptive_icon_foreground: "assets/native/icon/icon.png"
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/native/icon/icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   windows:
     generate: true
     icon_size: 256 # min:48, max:256, default: 48
-    image_path: "assets/icon/icon.png"
+    image_path: "assets/native/icon/icon.png"
   macos:
     generate: true
-    image_path: "assets/icon/icon.png"
+    image_path: "assets/native/icon/icon.png"

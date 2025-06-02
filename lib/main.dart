@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:alist_web/init.dart';
-import 'package:alist_web/web.dart';
-import 'package:alist_web/widgets/splashImagePage.dart';
+import 'package:alist_web/pages/homePage.dart';
+import 'package:alist_web/pages/login.dart';
+import 'package:alist_web/pages/web/web.dart';
+import 'package:alist_web/pages/splash/splashImagePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +47,9 @@ class MyApp extends StatelessWidget {
         return;
       },
       // home: const WebScreen(),
-      home: Platform.isMacOS?SplashImagePage():WebScreen(),
+      // home: Platform.isMacOS?SplashImagePage():WebScreen(),
+      // home: HomePage(),
+      home: LoginPage(),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:alist_web/toast.dart';
+import 'package:alist_web/utils/toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // import 'package:gtads/gtads.dart';
@@ -15,17 +15,17 @@ as alist_mobile_service;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'config.dart';
+import 'config/config.dart';
 
 List<Map<String, bool>>? initList;
-final APIBaseUrl = "http://localhost:15244";
-final PasswordHasBeenSet = "PasswordHasBeenSet";
+// final APIBaseUrl = "http://localhost:15244";
+// final PasswordHasBeenSet = "PasswordHasBeenSet";
 
 Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
   print("appDir.path:${appDir.path}");
   initBackgroundService().then((_) async {
-    await Future.delayed(Duration(milliseconds: 5));
+    await Future.delayed(Duration(milliseconds: 150));
     await setConfigData(appDir.path);
     await initAList();
     await startAList();
@@ -35,11 +35,11 @@ Future<void> init() async {
     }
   });
   // await initAD();
-  // initHttpAssets();
+  initHttpAssets();
 }
 
 Future<void> setConfigData(String path) async {
-  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  final dio = Dio(BaseOptions(baseUrl: AListWebAPIBaseUrl));
   String reqUri = "/set-config-data";
   final response = await dio.getUri(Uri(path: reqUri, queryParameters: {
     "path": path
@@ -52,7 +52,7 @@ Future<void> setConfigData(String path) async {
 }
 
 Future<void> initAList() async {
-  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  final dio = Dio(BaseOptions(baseUrl: AListWebAPIBaseUrl));
   String reqUri = "/init";
   final response = await dio.getUri(Uri.parse(reqUri));
   if (response.statusCode == 200) {
@@ -63,7 +63,7 @@ Future<void> initAList() async {
 }
 
 Future<void> startAList() async {
-  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  final dio = Dio(BaseOptions(baseUrl: AListWebAPIBaseUrl));
   String reqUri = "/start";
   final response = await dio.getUri(Uri.parse(reqUri));
   if (response.statusCode == 200) {
@@ -74,7 +74,7 @@ Future<void> startAList() async {
 }
 
 Future<void> setAdminPassword(String password) async {
-  final dio = Dio(BaseOptions(baseUrl: APIBaseUrl));
+  final dio = Dio(BaseOptions(baseUrl: AListWebAPIBaseUrl));
   String reqUri = "/set-admin-password";
   final response = await dio.getUri(Uri(path: reqUri, queryParameters: {
     "password": password

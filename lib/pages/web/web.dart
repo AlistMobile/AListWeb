@@ -10,13 +10,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../config/config.dart';
+import '../../config/global.dart';
 import '../../init.dart';
 import '../../l10n/generated/alistweb_localizations.dart';
 
 GlobalKey<WebScreenState> webGlobalKey = GlobalKey();
 
 class WebScreen extends StatefulWidget {
-  const WebScreen({Key? key}) : super(key: key);
+  const WebScreen({super.key, required this.startUrl});
+
+  final String startUrl;
 
   @override
   State<StatefulWidget> createState() {
@@ -36,7 +39,7 @@ class WebScreenState extends State<WebScreen> {
   );
 
   double _progress = 0;
-  String _url = AListAPIBaseUrl;
+  String? _url;
   // String _url = "http://localhost:8889";
   // String _url = "http://localhost:15244";
   // String _url = "https://baidu.com";
@@ -50,7 +53,7 @@ class WebScreenState extends State<WebScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1),(){_webViewController?.reload();});
+    // Future.delayed(Duration(seconds: 1),(){_webViewController?.reload();});
   }
 
   @override
@@ -81,15 +84,15 @@ class WebScreenState extends State<WebScreen> {
           ),
           body: Column(children: <Widget>[
             // SizedBox(height: MediaQuery.of(context).padding.top),
-            LinearProgressIndicator(
-              value: _progress,
-              backgroundColor: Colors.grey[200],
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-            ),
+            // LinearProgressIndicator(
+            //   value: _progress,
+            //   backgroundColor: Colors.grey[200],
+            //   valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+            // ),
             Expanded(
               child: InAppWebView(
                 initialSettings: settings,
-                initialUrlRequest: URLRequest(url: WebUri(_url)),
+                initialUrlRequest: URLRequest(url: WebUri(widget.startUrl)),
                 onWebViewCreated: (InAppWebViewController controller) {
                   _webViewController = controller;
                 },
@@ -164,6 +167,12 @@ class WebScreenState extends State<WebScreen> {
                   setState(() {
                     _progress = 0;
                   });
+                  if (!tokenSetted) {
+                    tokenSetted = true;
+                    controller.webStorage.localStorage
+                        .setItem(key: 'token', value: token);
+                    controller.reload();
+                  }
                 },
                 onProgressChanged:
                     (InAppWebViewController controller, int progress) {

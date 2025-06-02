@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:alist_web/pages/homePage.dart';
 import 'package:alist_web/pages/web/web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,7 +45,7 @@ class SplashImageState extends State<SplashImagePage> {
 //          Navigator.of(context).pushNamed("/demo1");
           Navigator.of(context).pop();
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return WebScreen(
+            return HomePage(
               key: UniqueKey(),
             );
           }));

@@ -91,32 +91,16 @@ class FilesWebPageState extends State<FilesWebPage> {
               child: InAppWebView(
                 initialSettings: settings,
                 initialUrlRequest: URLRequest(url: WebUri(_url)),
-                onWebViewCreated: (InAppWebViewController controller) async {
-                  // print("onWebViewCreated:$token");
-                  // controller.webStorage.localStorage
-                  //     .setItem(key: 'token', value: token);
+                onWebViewCreated: (InAppWebViewController controller) {
                   _webViewController = controller;
                 },
                 onLoadStart: (InAppWebViewController controller, Uri? url) async {
-                  // if (await controller.webStorage.localStorage
-                  //     .getItem(key: 'token') == null){
-                  //   controller.webStorage.localStorage
-                  //       .setItem(key: 'token', value: token).then((_){controller.reload();});
-                  // }
-                  // print("onLoadStart:$token");
-                  // controller.webStorage.localStorage
-                  //     .setItem(key: 'token', value: token);
                   log("onLoadStart $url");
                   setState(() {
                     _progress = 0;
                   });
                 },
                 shouldOverrideUrlLoading: (controller, navigationAction) async {
-                  // if (await controller.webStorage.localStorage
-                  //     .getItem(key: 'token') == null){
-                    controller.webStorage.localStorage
-                        .setItem(key: 'token', value: token);
-                  // }
                   log("shouldOverrideUrlLoading ${navigationAction.request.url}");
 
                   var uri = navigationAction.request.url!;
@@ -181,6 +165,12 @@ class FilesWebPageState extends State<FilesWebPage> {
                   setState(() {
                     _progress = 0;
                   });
+                  if (!tokenSetted) {
+                    tokenSetted = true;
+                    controller.webStorage.localStorage
+                        .setItem(key: 'token', value: token);
+                    controller.reload();
+                  }
                 },
                 onProgressChanged:
                     (InAppWebViewController controller, int progress) {

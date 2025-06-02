@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:alist_web/pages/web/web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -95,7 +96,10 @@ class _ProfilePageState extends State<ProfilePage> {
             trailing: const Icon(Icons.arrow_right),
             onTap: () {
               String url = "$AListAPIBaseUrl/@manage/settings/site";
-              goToURL(context, url,"Settings");
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WebScreen(
+                    startUrl: url,
+                  )));
             }),
         ListTile(
             //第二个功能项
@@ -104,7 +108,10 @@ class _ProfilePageState extends State<ProfilePage> {
             trailing: const Icon(Icons.arrow_right),
             onTap: () {
               String url = "https://alistgo.com/guide/";
-              goToURL(context, url,"Docs");
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WebScreen(
+                    startUrl: url,
+                  )));
             }),
         ListTile(
             //第二个功能项

@@ -110,6 +110,7 @@ Future<void> initHttpAssets() async {
   server.addRoute(myServeFlutterAssets("@manage/settings/site"));
   server.addRoute(myServeFlutterAssets("@manage/tasks/offline_download"));
   server.addRoute(myServeFlutterAssets("@manage/storages"));
+  server.addRoute(myServeFlutterAssets("@login"));
   server.addRoute(jaguar_flutter_asset.serveFlutterAssets(prefix: "web/"));
   server.serve(logRequests: true).then((v) {
     server.log.onRecord.listen((r) => debugPrint("==serve-log：$r"));

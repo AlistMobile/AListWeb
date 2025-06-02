@@ -79,6 +79,7 @@ flutter:
     - assets/native/images/
     - assets/native/images/splash/
     - assets/web/
+    - assets/web/third/
     - assets/web/assets/
     - assets/web/images/
     - assets/web/static/

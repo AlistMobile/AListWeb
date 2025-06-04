@@ -250,7 +250,7 @@ class TasksPageState extends State<TasksPage> {
             onTap: () {
               setState(() {
                 uri = "@manage/tasks/offline_download";
-                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri("$AListAPIBaseUrl/$uri")));
+                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri(getUrlByUri(uri))));
               });
             },
           ),
@@ -259,7 +259,7 @@ class TasksPageState extends State<TasksPage> {
             onTap: () {
               setState(() {
                 uri = "@manage/tasks/upload";
-                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri("$AListAPIBaseUrl/$uri")));
+                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri(getUrlByUri(uri))));
               });
             },
           ),
@@ -268,7 +268,7 @@ class TasksPageState extends State<TasksPage> {
             onTap: () {
               setState(() {
                 uri = "@manage/tasks/copy";
-                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri("$AListAPIBaseUrl/$uri")));
+                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri(getUrlByUri(uri))));
               });
             },
           ),
@@ -277,11 +277,14 @@ class TasksPageState extends State<TasksPage> {
             onTap: () {
               setState(() {
                 uri = "@manage/tasks/decompress";
-                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri("$AListAPIBaseUrl/$uri")));
+                _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri(getUrlByUri(uri))));
               });
             },
           ),
         ]);
+  }
+  getUrlByUri(String uri){
+    return "$AListAPIBaseUrl/$uri";
   }
 
   _showAppInfo(){

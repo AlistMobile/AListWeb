@@ -31,6 +31,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs photos access to select and upload to your storage</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

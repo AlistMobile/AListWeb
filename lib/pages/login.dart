@@ -1,4 +1,6 @@
 //这个模型是用来局域网或者远程操作casaOS的
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../config/config.dart';
@@ -28,11 +30,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    _initList();
+    Timer.periodic(const Duration(milliseconds: 10), (timer) {
+      if (inited) {
+        timer.cancel();
+        setState(() {
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    _initList();
     return Scaffold(
         appBar: AppBar(
           title: Text("AListWeb Login"),
@@ -42,7 +51,10 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.all(10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: _list,
+              children: inited?_list:[TDLoading(
+                size: TDLoadingSize.small,
+                icon: TDLoadingIcon.activity,
+              )],
             ),
           ),
         ));

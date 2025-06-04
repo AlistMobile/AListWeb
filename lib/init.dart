@@ -17,6 +17,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'config/config.dart';
+import 'config/global.dart';
 
 List<Map<String, bool>>? initList;
 // final APIBaseUrl = "http://localhost:15244";
@@ -26,7 +27,7 @@ Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
   print("appDir.path:${appDir.path}");
   initBackgroundService().then((_) async {
-    await Future.delayed(Duration(milliseconds: 150));
+    // await Future.delayed(Duration(milliseconds: 150));
     await setConfigData(appDir.path);
     await initAList();
     await startAList();
@@ -35,6 +36,7 @@ Future<void> init() async {
       setAdminPassword("admin");
     }
   });
+  inited = true;
   // await initAD();
   initHttpAssets();
 }

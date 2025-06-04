@@ -22,65 +22,8 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>NSLocalNetworkUsageDescription</key>
-    <string>Use Bonsoir to find services and devices locally.</string>
-    <key>NSBonjourServices</key>
-    <array>
-        <string>_iotdevice._tcp</string>
-        <string>_openiothub-gateway._tcp</string>
-        <string>_http._tcp</string>
-        <string>_CGI._tcp</string>
-        <string>_home-assistant._tcp</string>
-        <string>_casaos._tcp</string>
-        <string>_zimaos._tcp</string>
-        <string>_rfb._tcp</string>
-    </array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>weixin</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>wx9211939fcd68a318</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>tencent</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>tencent1111913707</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>weixin</string>
-		<string>weixinULAPI</string>
-		<string>weixinURLParamsAPI</string>
-		<string>mqq</string>
-		<string>mqqapi</string>
-		<string>tim</string>
-		<string>mqqopensdknopasteboard</string>
-		<string>mqqopensdknopasteboardios16</string>
-		<string>mqqopensdkapiV2</string>
-		<string>mqqgamebindinggroup</string>
-		<string>mqqopensdkavatar</string>
-		<string>mqqopensdkfriend</string>
-		<string>mqqopensdklaunchminiapp</string>
-		<string>mqzone</string>
-		<string>tencentapi.qq.reqContent</string>
-		<string>tencentapi.qzone.reqContent</string>
-		<string>mqqthirdappgroup</string>
-		<string>mqqopensdkminiapp</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -88,16 +31,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>This app needs camera access to scan QR codes</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The app needs to obtain your location information to provide relevant services</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app needs to obtain your location information to provide relevant services</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs photos access to get QR code from photo library</string>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -117,22 +50,7 @@
 	</array>
 	<key>io.flutter.embedded_views_preview</key>
     <true/>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>This identifier will be used to deliver personalized ads to you.</string>
-    <key>SKAdNetworkItems</key>
-    <array>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>238da6jt44.skadnetwork</string>
-        </dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>22mmun2rn5.skadnetwork</string>
-        </dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>cstr6suwn9.skadnetwork</string>
-        </dict>
-    </array>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>

@@ -13,6 +13,7 @@ import '../../config/config.dart';
 import '../../model/custom_theme.dart';
 import '../../widgets/goToUrl.dart';
 import '../common/appInfo.dart';
+import '../common/system.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -89,6 +90,16 @@ class _ProfilePageState extends State<ProfilePage> {
   _initListTiles() {
     setState(() {
       _listTiles = <ListTile>[
+        ListTile(
+          //第二个功能项
+            title: Text("System"),
+            leading: Icon(TDIcons.system_2, color: Colors.blue),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              String url = "$AListAPIBaseUrl/@manage/settings/site";
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SystemPage()));
+            }),
         ListTile(
           //第二个功能项
             title: Text("Settings"),

@@ -109,6 +109,9 @@ Future<void> initHttpAssets() async {
   server.addRoute(myServeFlutterAssets("@manage"));
   server.addRoute(myServeFlutterAssets("@manage/settings/site"));
   server.addRoute(myServeFlutterAssets("@manage/tasks/offline_download"));
+  server.addRoute(myServeFlutterAssets("@manage/tasks/upload"));
+  server.addRoute(myServeFlutterAssets("@manage/tasks/copy"));
+  server.addRoute(myServeFlutterAssets("@manage/tasks/decompress"));
   server.addRoute(myServeFlutterAssets("@manage/storages"));
   server.addRoute(myServeFlutterAssets("@login"));
   server.addRoute(jaguar_flutter_asset.serveFlutterAssets(prefix: "web/"));

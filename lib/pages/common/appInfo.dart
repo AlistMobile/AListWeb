@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../config/config.dart';
 import '../../l10n/generated/alistweb_localizations.dart';
+import '../../utils/toast.dart';
 import '../../widgets/goToUrl.dart';
 
 class AppInfoPage extends StatefulWidget {
@@ -22,6 +25,7 @@ class _AppInfoPageState extends State<AppInfoPage> {
 
   //版本名
   String version = "";
+  String aListVersion = "";
 
   //版本号
   String buildNumber = "";
@@ -43,8 +47,9 @@ class _AppInfoPageState extends State<AppInfoPage> {
     _result.add("${AListWebLocalizations.of(context).app_name}$appName");
     _result.add("${AListWebLocalizations.of(context).package_name}$packageName");
     _result.add("${AListWebLocalizations.of(context).version}$version");
+    _result.add("AList ${AListWebLocalizations.of(context).version}$aListVersion");
     _result.add("${AListWebLocalizations.of(context).version_sn}$buildNumber");
-    _result.add("${AListWebLocalizations.of(context).icp_number}皖ICP备2022013511号-2A");
+    _result.add("${AListWebLocalizations.of(context).icp_number}皖ICP备2022013511号-3A");
 
     final tiles = _result.map(
       (pair) {
@@ -110,5 +115,30 @@ class _AppInfoPageState extends State<AppInfoPage> {
         buildNumber = packageInfo.buildNumber;
       });
     });
+
+    final dio = Dio(BaseOptions(
+        baseUrl: AListAPIBaseUrl));
+    String reqUri = "/api/public/settings";
+    // String reqUri = "/api/auth/login/hash";
+    try {
+      final response = await dio.getUri(Uri.parse(reqUri));
+      if (response.statusCode == 200 && response.data["code"] == 200) {
+        //  登录成功
+        Map<String, dynamic> data = response.data;
+        print(data["data"]["token"]);
+        setState(() {
+          aListVersion = data["data"]["version"];
+        });
+        return;
+      } else {
+        //  登录失败
+        show_failed("Login failed", context);
+      }
+    } catch (e) {
+      //  登录失败
+      show_failed("Login failed:${e.toString()}", context);
+      print(e.toString());
+      return;
+    }
   }
 }

@@ -22,8 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   AListWebLocalizations? localizations;
   List<Widget> _list = <Widget>[];
 
-  final TextEditingController _username = TextEditingController(text: "");
-  final TextEditingController _user_password = TextEditingController(text: "");
+  final TextEditingController _username = TextEditingController(text: "admin");
+  final TextEditingController _user_password = TextEditingController(text: "admin");
 
   @override
   void initState() {

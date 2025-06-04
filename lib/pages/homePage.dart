@@ -125,16 +125,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   List<BottomNavigationBarItem> getBottomNavItems(BuildContext context) {
     final List<BottomNavigationBarItem> bottomNavItems = [
       BottomNavigationBarItem(
-          icon: const Icon(TDIcons.home),
+          icon: const Icon(TDIcons.hard_disk_storage),
           label: "Storages"),
       BottomNavigationBarItem(
-          icon: const Icon(TDIcons.internet),
+          icon: const Icon(TDIcons.task),
           label: "Tasks"),
       BottomNavigationBarItem(
-          icon: const Icon(TDIcons.internet),
+          icon: const Icon(TDIcons.file),
           label: "Files"),
       BottomNavigationBarItem(
-          icon: const Icon(TDIcons.desktop),
+          icon: const Icon(TDIcons.user),
           label: "Me"),
     ];
     return bottomNavItems;

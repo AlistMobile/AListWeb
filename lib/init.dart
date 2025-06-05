@@ -26,19 +26,19 @@ List<Map<String, bool>>? initList;
 Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
   print("appDir.path:${appDir.path}");
-  initBackgroundService().then((_) async {
+  await initBackgroundService().then((_) async {
     // await Future.delayed(Duration(milliseconds: 150));
     await setConfigData(appDir.path);
     await initAList();
     await startAList();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (!prefs.containsKey(PasswordHasBeenSet)) {
-      setAdminPassword("admin");
+      await setAdminPassword("admin");
     }
   });
-  inited = true;
   // await initAD();
-  initHttpAssets();
+  await initHttpAssets();
+  inited = true;
 }
 
 Future<void> setConfigData(String path) async {

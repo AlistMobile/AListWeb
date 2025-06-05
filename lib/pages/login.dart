@@ -22,7 +22,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   AListWebLocalizations? localizations;
-  List<Widget> _list = <Widget>[];
+  List<Widget> _list = <Widget>[TDLoading(
+    size: TDLoadingSize.small,
+    icon: TDLoadingIcon.activity,
+  )];
 
   final TextEditingController _username = TextEditingController(text: "admin");
   final TextEditingController _user_password = TextEditingController(text: "admin");
@@ -30,14 +33,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _initList();
-    Timer.periodic(const Duration(milliseconds: 10), (timer) {
-      if (inited) {
-        timer.cancel();
-        setState(() {
-        });
-      }
-    });
+    // Timer.periodic(const Duration(milliseconds: 200), (timer) {
+    //   if (inited) {
+    //     timer.cancel();
+    //     _initList();
+    //   }
+    // });
+    Future.delayed(Duration(milliseconds: 200), (){_initList();});
   }
 
   @override
@@ -51,10 +53,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.all(10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: inited?_list:[TDLoading(
-                size: TDLoadingSize.small,
-                icon: TDLoadingIcon.activity,
-              )],
+              children: _list,
             ),
           ),
         ));

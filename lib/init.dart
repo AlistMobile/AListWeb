@@ -27,8 +27,9 @@ Future<void> init() async {
   Directory appDir = await  getApplicationDocumentsDirectory();
   print("appDir.path:${appDir.path}");
   await initBackgroundService().then((_) async {
-    // await Future.delayed(Duration(milliseconds: 150));
+    await Future.delayed(Duration(milliseconds: 150));
     await setConfigData(appDir.path);
+    // await Future.delayed(Duration(milliseconds: 50));
     await initAList();
     await startAList();
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -36,9 +37,9 @@ Future<void> init() async {
       await setAdminPassword("admin");
     }
   });
-  // await initAD();
-  await initHttpAssets();
   inited = true;
+  // await initAD();
+  initHttpAssets();
 }
 
 Future<void> setConfigData(String path) async {

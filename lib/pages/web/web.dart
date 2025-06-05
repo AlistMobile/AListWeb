@@ -164,14 +164,17 @@ class WebScreenState extends State<WebScreen> {
                 },
                 onLoadStop:
                     (InAppWebViewController controller, Uri? url) async {
-                  setState(() {
-                    _progress = 0;
-                  });
+                  // setState(() {
+                  //   _progress = 0;
+                  // });
                   if (!tokenSetted) {
                     tokenSetted = true;
-                    controller.webStorage.localStorage
+                    await controller.webStorage.localStorage
                         .setItem(key: 'token', value: token);
-                    controller.reload();
+                    // await controller.reload();
+                    // Future.delayed(Duration(milliseconds: 20));
+                    // await controller.reload();
+                    _webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri(widget.startUrl)));
                   }
                 },
                 onProgressChanged:
